@@ -23,7 +23,7 @@ INSTALLATION
     pip install datecalc
 
 CLI USAGE
----------
+-----
 
 Calculating difference between dates:
 
@@ -51,6 +51,8 @@ GUI USAGE
 ---------
 
 coming soon!
+
+
 
 COPYRIGHT
 ---------
