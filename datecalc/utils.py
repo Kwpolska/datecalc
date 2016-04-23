@@ -12,22 +12,26 @@ The logic for date calculations.
 """
 
 import datetime
+import dateutil.parser
 import re
 
 __all__ = ('TimeSplit', 'date_difference', 'dhms_to_seconds',
-           'timestring_to_seconds', 'timestring_to_timedelta')
+           'timestring_to_seconds', 'timestring_to_timedelta',
+           'parse_date')
 
 SEC_PER_DAY = 86400
 SEC_PER_HOUR = 3600
 SEC_PER_MINUTE = 60
+_NEGATIVE_PART = r"^(?P<negative>[-+mM])?"
 TIMESTRING_REGEX = (
-    re.compile(r"^(?P<negative>[+-mM])?(?P<days>\d+)[dD:]"
+    re.compile(_NEGATIVE_PART + r"(?P<days>\d+)[dD:]"
                r"(?P<hours>\d+):(?P<minutes>\d+):(?P<seconds>\d+)$"),  # DHMS
-    re.compile(r"^(?P<negative>[+-mM])?"
+    re.compile(_NEGATIVE_PART + r"(?P<days>\d+)[dD]"),  # D
+    re.compile(_NEGATIVE_PART +
                r"(?P<hours>\d+):(?P<minutes>\d+):(?P<seconds>\d+)$"),  # HMS
-    re.compile(r"^(?P<negative>[+-mM])?"
-               "(?P<minutes>\d+):(?P<seconds>\d+)$"),  # MS
-    re.compile(r"^(?P<negative>[+-mM])?(?P<seconds>\d+)$"),  # S
+    re.compile(_NEGATIVE_PART +
+               r"(?P<minutes>\d+):(?P<seconds>\d+)$"),  # MS
+    re.compile(_NEGATIVE_PART + r"(?P<seconds>\d+)$"),  # S
 )
 
 
@@ -44,6 +48,8 @@ class TimeSplit(object):
 
         :param number total_seconds: Total seconds.
         """
+        if total_seconds == 0:
+            return
         self.is_negative = total_seconds < 0
         total_seconds = abs(int(total_seconds))  # ignore microseconds
         self.days, total_seconds = divmod(total_seconds, SEC_PER_DAY)
@@ -52,13 +58,14 @@ class TimeSplit(object):
         self.seconds = total_seconds
 
     @classmethod
-    def from_dhms(cls, days, hours, minutes, seconds):
+    def from_dhms(cls, days, hours, minutes, seconds, is_negative=False):
         """Convert days, hours, minutes, seconds into a TimeSplit object."""
         ts = cls(0)  # don’t re-calculate for now
         ts.days = days
         ts.hours = hours
         ts.minutes = minutes
         ts.seconds = seconds
+        ts.is_negative = is_negative
         return ts
 
     @classmethod
@@ -146,3 +153,15 @@ def timestring_to_seconds(timestring):
 def timestring_to_timedelta(timestring):
     """Convert a time string to a timedelta object."""
     return datetime.timedelta(seconds=timestring_to_seconds(timestring))
+
+
+def parse_date(date):
+    """Parse date from string (also accepts 'now' and 'today')"""
+    date = date.strip()
+    datel = date.lower()
+    if datel == 'now':  # pragma: no cover
+        return datetime.datetime.now()
+    elif datel == 'today':  # pragma: no cover
+        return datetime.datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0)
+    return dateutil.parser.parse(date)
