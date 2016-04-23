@@ -1,0 +1,19 @@
+language: python
+sudo: false
+python:
+ - "2.7"
+ - "3.3"
+ - "3.4"
+ - "pypy"
+
+install:
+ - "pip install -r requirements.txt"
+ - "pip install ."
+
+script:
+  - "py.test --cov datecalc --cov-report term-missing tests/"
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
