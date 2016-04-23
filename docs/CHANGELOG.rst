@@ -5,7 +5,7 @@ Appendix C. Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-04-17
+:Date: 2016-04-23
 :Version: 0.1.0
 
 .. index:: CHANGELOG
@@ -18,6 +18,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+0.1.0
+    Initial release.
 
 0.1.0
     Initial release.

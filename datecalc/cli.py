@@ -13,7 +13,6 @@ Date Calculator command-line interface.
 
 import datecalc.utils
 import argparse
-import dateutil.parser
 import sys
 
 __all__ = ('main',)
@@ -22,15 +21,16 @@ arg_description = "A simple date calculator."
 arg_epilog = """
 DATE1 should be a date, DATE2 should be a date or a time string.
 Date format: any, ISO 8601 preferred, watch out for spaces
+             Use 'now' for current time, 'today' for today (midnight)
 Time string: DDdHH:MM:SS (all but seconds optional)
              Add 'm' for negative (or use -- and a minus sign)"""
 
 
-def main():
+def main(src=None):
     """The main routine of Date Calculator in CLI mode."""
     parser = argparse.ArgumentParser(
-        description=arg_description, epilog=arg_epilog, add_help=True,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        prog='datecalc', description=arg_description, epilog=arg_epilog,
+        add_help=True, formatter_class=argparse.RawDescriptionHelpFormatter)
 
     operations = parser.add_mutually_exclusive_group(required=True)
     operations.add_argument(
@@ -42,19 +42,24 @@ def main():
 
     parser.add_argument("DATE1", help="Date to compare/operate on")
     parser.add_argument("DATE2", help="Date to compare/time to add")
-    args = parser.parse_args()
+    if src is None:  # pragma: no cover
+        args = parser.parse_args()
+    else:
+        args = parser.parse_args(src)
 
     # Parse dates into appropriate things and act on them
-    date1 = dateutil.parser.parse(args.DATE1)
+
+    date1 = datecalc.utils.parse_date(args.DATE1)
     if args.diff:
-        date2 = dateutil.parser.parse(args.DATE2)
+        date2 = datecalc.utils.parse_date(args.DATE2)
         ts = datecalc.utils.date_difference(date1, date2)
         print(ts)
     elif args.add:
         date2 = datecalc.utils.timestring_to_timedelta(args.DATE2)
         new = date1 + date2
         print(new.isoformat())
+
     return 0
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     sys.exit(main())
