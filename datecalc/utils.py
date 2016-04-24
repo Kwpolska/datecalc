@@ -118,6 +118,10 @@ class TimeSplit(object):
             d, self.hours = divmod(self.hours, 24)
             self.days += d
 
+    def to_timedelta(self):
+        """Convert to a timedelta object."""
+        return datetime.timedelta(seconds=self.to_seconds())
+
     def __str__(self):
         """Stringify time."""
         if self.is_negative:
@@ -156,7 +160,7 @@ def timestring_to_timedelta(timestring):
 
 
 def parse_date(date):
-    """Parse date from string (also accepts 'now' and 'today')"""
+    """Parse date from string (also accepts 'now' and 'today')."""
     date = date.strip()
     datel = date.lower()
     if datel == 'now':  # pragma: no cover
