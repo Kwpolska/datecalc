@@ -36,3 +36,4 @@ o.*
 
 # GitHub token file
 .pypt/gh-token
+.cache
