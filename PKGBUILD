@@ -1,5 +1,5 @@
 # Maintainer: Chris Warrick <aur@chriswarrick.com>
-pkgname=python-datecalc
+pkgname=datecalc
 _pyname=datecalc
 pkgver=0.1.0
 pkgrel=1
