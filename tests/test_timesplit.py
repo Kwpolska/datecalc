@@ -69,6 +69,13 @@ def test_timesplit_to_seconds():
         assert TimeSplit(case).to_seconds() == case
 
 
+def test_timesplit_to_timedelta():
+    """Test timesplit conversion to timedelta."""
+    cases = [1, -1, 60, 123, 3600, 3601, 86401, 93784]
+    for case in cases:
+        assert TimeSplit(case).to_timedelta().total_seconds() == case
+
+
 def test_timesplit_from_dhms():
     """Test TimeSplit creation from DHMS."""
     cases = [

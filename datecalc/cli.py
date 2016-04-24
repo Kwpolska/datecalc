@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# Date Calculator v0.1.0
+# Date Calculator v0.1.1
 # A simple date calculator.
 # Copyright © 2016, Chris Warrick.
 # See /LICENSE for licensing information.
@@ -11,6 +11,7 @@ Date Calculator command-line interface.
 :License: BSD (see /LICENSE).
 """
 
+import datecalc
 import datecalc.utils
 import argparse
 import sys
@@ -40,6 +41,12 @@ def main(src=None):
         "-a", "--add", action='store_true',
         help="Add/subtract DATE2 to/from DATE1")
 
+    parser.add_argument(
+        '--version', action='version',
+        version='Date Calculator v{0}'.format(datecalc.__version__))
+    parser.add_argument(
+        "-v", "--verbose", action='store_true',
+        help="Show dates before operating on them")
     parser.add_argument("DATE1", help="Date to compare/operate on")
     parser.add_argument("DATE2", help="Date to compare/time to add")
     if src is None:  # pragma: no cover
@@ -50,14 +57,20 @@ def main(src=None):
     # Parse dates into appropriate things and act on them
 
     date1 = datecalc.utils.parse_date(args.DATE1)
+    if args.verbose:
+        print(date1)
     if args.diff:
         date2 = datecalc.utils.parse_date(args.DATE2)
+        if args.verbose:
+            print(date2)
         ts = datecalc.utils.date_difference(date1, date2)
         print(ts)
-    elif args.add:
-        date2 = datecalc.utils.timestring_to_timedelta(args.DATE2)
-        new = date1 + date2
-        print(new.isoformat())
+    else:  # (args.add)
+        date2 = datecalc.utils.TimeSplit.from_timestring(args.DATE2)
+        if args.verbose:
+            print(date2)
+        new = date1 + date2.to_timedelta()
+        print(new)
 
     return 0
 
