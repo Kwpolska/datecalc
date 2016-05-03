@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='datecalc',
-      version='0.1.1',
+      version='0.2.0',
       description='A simple date calculator.',
       keywords='datecalc,date,time',
       author='Chris Warrick',
@@ -28,7 +28,7 @@ setup(name='datecalc',
                    'Programming Language :: Python :: 3.3',
                    'Programming Language :: Python :: 3.4',
                    'Programming Language :: Python :: 3.5'],
-      packages=find_packages(),
+      packages=find_packages(exclude=('tests',)),
       include_package_data=True,
       install_requires=['python-dateutil'],
       extras_require={'gui': ['PyQt5']},

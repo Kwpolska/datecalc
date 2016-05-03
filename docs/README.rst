@@ -4,8 +4,8 @@ Date Calculator
 :Info: This is the README file for Date Calculator.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2016, Chris Warrick.
-:Date: 2016-04-24
-:Version: 0.1.1
+:Date: 2016-05-03
+:Version: 0.2.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/datecalc.svg?branch=master
