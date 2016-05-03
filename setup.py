@@ -31,10 +31,15 @@ setup(name='datecalc',
       packages=find_packages(),
       include_package_data=True,
       install_requires=['python-dateutil'],
+      extras_require={'gui': ['PyQt5']},
+      data_files=[('share/applications', ['freedesktop/datecalc.desktop'])],
       entry_points={
           'console_scripts': [
               'datecalc = datecalc.cli:main',
               'datecalc-cli = datecalc.cli:main',
+          ],
+          'gui_scripts': [
+              'datecalc-gui = datecalc.gui:main',
           ]
       },
       )
