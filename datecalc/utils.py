@@ -24,6 +24,11 @@ SEC_PER_HOUR = 3600
 SEC_PER_MINUTE = 60
 _NEGATIVE_PART = r"^(?P<negative>[-+mM])?"
 TIMESTRING_REGEX = (
+    # English:
+    re.compile(_NEGATIVE_PART + r"(?P<days>\d+) ?[dD][aA][yY][sS]? ?"
+               r"(?P<hours>\d+):(?P<minutes>\d+):(?P<seconds>\d+)$"),  # DHMS
+    re.compile(_NEGATIVE_PART + r"(?P<days>\d+) ?[dD][aA][yY][sS]?"),  # D
+    # Simple:
     re.compile(_NEGATIVE_PART + r"(?P<days>\d+)[dD:]"
                r"(?P<hours>\d+):(?P<minutes>\d+):(?P<seconds>\d+)$"),  # DHMS
     re.compile(_NEGATIVE_PART + r"(?P<days>\d+)[dD]"),  # D
@@ -38,6 +43,7 @@ TIMESTRING_REGEX = (
 class TimeSplit(object):
     """Time split into days, hours, minutes, seconds."""
 
+    is_negative = False
     days = 0
     hours = 0
     minutes = 0
@@ -123,19 +129,32 @@ class TimeSplit(object):
         return datetime.timedelta(seconds=self.to_seconds())
 
     def __str__(self):
-        """Stringify time."""
+        """Stringify time.
+
+        .. versionchanged:: 0.2.0
+        """
         if self.is_negative:
             s = '-'
         else:
             s = ''
-        if self.days:
-            s += '{0}d'.format(self.days)
+
+        if self.days == 1:
+            s += '1 day '
+        elif self.days:
+            s += '{0} days '.format(self.days)
+
         return s + '{0:02d}:{1:02d}:{2:02d}'.format(
             self.hours, self.minutes, self.seconds)
 
     def __repr__(self):
         """Programmer-friendly representation."""
-        return "<TimeSplit {0!s}>".format(self)
+        s = "<TimeSplit "
+        if self.is_negative:
+            s += '-'
+        if self.days:
+            s += '{0}d'.format(self.days)
+        return s + '{0:02d}:{1:02d}:{2:02d}>'.format(
+            self.hours, self.minutes, self.seconds)
 
 
 def date_difference(start, end):

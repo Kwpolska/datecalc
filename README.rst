@@ -30,9 +30,13 @@ Calculating difference between dates:
 ::
 
     $ python -m datecalc.cli -d 2016-01-01T00:00:00 2016-01-02T02:03:04
-    1d02:03:04
+    1 day 02:03:04
     $ python -m datecalc.cli -d 2016-01-02T02:03:04 2016-01-01T00:00:00
-    -1d02:03:04
+    -1 day 02:03:04
+    $ python -m datecalc.cli -d 2016-01-01T00:00:00 2016-01-03T02:03:04
+    2 days 02:03:04
+    $ python -m datecalc.cli -d 2016-01-04T02:03:04 2016-01-01T00:00:00
+    -3 days 02:03:04
 
 
 Adding/subtracting:
@@ -45,6 +49,8 @@ Adding/subtracting:
     2015-12-31T12:00:00
     $ python -m datecalc.cli -a -- 2016-01-01T00:00:00 -12:00:00
     2015-12-31T12:00:00
+    $ python -m datecalc.cli -a 2016-01-01T00:00:00 4d12:00:00
+    2016-01-05T12:00:00
 
 
 GUI USAGE
