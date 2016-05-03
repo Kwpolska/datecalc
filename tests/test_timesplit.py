@@ -24,14 +24,15 @@ def test_timesplit_init():
     assert not ts.is_negative
 
 
-def test_timesplit_repr_str():
-    """Test TimeSplit __repr__ and __str__ methods."""
+def test_timesplit_str():
+    """Test TimeSplit __str__ method."""
     cases = [
         (333, "00:05:33"),
         (3723, "01:02:03"),
-        (93784, "1d02:03:04"),
-        (1209600, "14d00:00:00"),
-        (-93784, "-1d02:03:04"),
+        (93784, "1 day 02:03:04"),
+        (1209600, "14 days 00:00:00"),
+        (-93784, "-1 day 02:03:04"),
+        (-1209600, "-14 days 00:00:00"),
         (-1, "-00:00:01"),
         (-3600, "-01:00:00"),
     ]
@@ -39,8 +40,22 @@ def test_timesplit_repr_str():
     for case_in, case_out in cases:
         assert str(TimeSplit(case_in)) == case_out
 
-    ts = TimeSplit(-93784)
-    assert repr(ts) == "<TimeSplit -1d02:03:04>"
+
+def test_timesplit_repr():
+    """Test TimeSplit __repr__ method."""
+    cases = [
+        (333, "<TimeSplit 00:05:33>"),
+        (3723, "<TimeSplit 01:02:03>"),
+        (93784, "<TimeSplit 1d02:03:04>"),
+        (1209600, "<TimeSplit 14d00:00:00>"),
+        (-93784, "<TimeSplit -1d02:03:04>"),
+        (-1209600, "<TimeSplit -14d00:00:00>"),
+        (-1, "<TimeSplit -00:00:01>"),
+        (-3600, "<TimeSplit -01:00:00>"),
+    ]
+
+    for case_in, case_out in cases:
+        assert repr(TimeSplit(case_in)) == case_out
 
 
 def test_timesplit_sanitize_values():
@@ -111,6 +126,17 @@ def test_timesplit_from_timestring():
         ("1:02:03:04", 1, 2, 3, 4, False),
         ("01:02:03:04", 1, 2, 3, 4, False),
         ("+01:02:03:04", 1, 2, 3, 4, False),
+
+        ("11 days 200:03:04", 11, 200, 3, 4, False),
+        ("12 day 200:03:04", 12, 200, 3, 4, False),
+        ("13 Days 200:03:04", 13, 200, 3, 4, False),
+        ("14 Day 200:03:04", 14, 200, 3, 4, False),
+        ("15DayS200:03:04", 15, 200, 3, 4, False),
+        ("16DaYS 200:03:04", 16, 200, 3, 4, False),
+        ("17 dAyS200:03:04", 17, 200, 3, 4, False),
+        ("18DaY 200:03:04", 18, 200, 3, 4, False),
+        ("19 dAy200:03:04", 19, 200, 3, 4, False),
+        ("-20 days 200:03:04", 20, 200, 3, 4, True),
 
         ("01:02:03", 0, 1, 2, 3, False),
         ("-01:02:03", 0, 1, 2, 3, True),

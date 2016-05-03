@@ -4,8 +4,8 @@ Date Calculator
 :Info: This is the README file for Date Calculator.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2016, Chris Warrick.
-:Date: 2016-04-24
-:Version: 0.1.1
+:Date: 2016-05-03
+:Version: 0.2.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/datecalc.svg?branch=master
@@ -30,9 +30,13 @@ Calculating difference between dates:
 ::
 
     $ python -m datecalc.cli -d 2016-01-01T00:00:00 2016-01-02T02:03:04
-    1d02:03:04
+    1 day 02:03:04
     $ python -m datecalc.cli -d 2016-01-02T02:03:04 2016-01-01T00:00:00
-    -1d02:03:04
+    -1 day 02:03:04
+    $ python -m datecalc.cli -d 2016-01-01T00:00:00 2016-01-03T02:03:04
+    2 days 02:03:04
+    $ python -m datecalc.cli -d 2016-01-04T02:03:04 2016-01-01T00:00:00
+    -3 days 02:03:04
 
 
 Adding/subtracting:
@@ -45,6 +49,8 @@ Adding/subtracting:
     2015-12-31T12:00:00
     $ python -m datecalc.cli -a -- 2016-01-01T00:00:00 -12:00:00
     2015-12-31T12:00:00
+    $ python -m datecalc.cli -a 2016-01-01T00:00:00 4d12:00:00
+    2016-01-05T12:00:00
 
 
 GUI USAGE

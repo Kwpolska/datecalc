@@ -5,8 +5,8 @@ Appendix B. License for Date Calculator
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-04-24
-:Version: 0.1.1
+:Date: 2016-05-03
+:Version: 0.2.0
 
 .. index:: LICENSE
 

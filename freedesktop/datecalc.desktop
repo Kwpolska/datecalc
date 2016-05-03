@@ -1,0 +1,19 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Categories=Office;
+Comment[en_US]=A date calculator.
+Comment=A date calculator.
+Exec=datecalc-gui %f
+GenericName[en_US]=Date calculator
+GenericName=Date calculator
+Icon=office-calendar
+MimeType=
+Name[en_US]=DateCalc
+Name=DateCalc
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+TryExec=datecalc-gui
+Type=Application
+Version=1.0

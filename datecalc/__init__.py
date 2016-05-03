@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# Date Calculator v0.1.1
+# Date Calculator v0.2.0
 # A simple date calculator.
 # Copyright © 2016, Chris Warrick.
 # All rights reserved.
@@ -40,7 +40,7 @@ A simple date calculator.
 """
 
 __title__ = 'Date Calculator'
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 __author__ = 'Chris Warrick'
 __license__ = '3-clause BSD'
 __docformat__ = 'restructuredtext en'
