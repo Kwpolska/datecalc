@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='datecalc',
-      version='0.2.0',
+      version='0.2.1',
       description='A simple date calculator.',
       keywords='datecalc,date,time',
       author='Chris Warrick',
