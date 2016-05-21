@@ -11,7 +11,7 @@ makedepends=('python' 'python-setuptools')
 depends=('python' 'python-dateutil')
 optdepends=('python-pyqt5: for Qt GUI')
 options=(!emptydirs)
-source=("https://pypi.io/packages/source/${_pyname:0:1}/${_pyname}/${_pyname}-${pkgver}.tar.gz")
+source=("https://files.pythonhosted.org/packages/source/${_pyname:0:1}/${_pyname}/${_pyname}-${pkgver}.tar.gz")
 md5sums=('2137bfca558e83227a4a2ad82e494a85')
 
 package() {
