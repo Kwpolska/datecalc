@@ -9,6 +9,7 @@ Date Calculator
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/datecalc.svg?branch=master
+   :target: https://travis-ci.org/Kwpolska/datecalc
 
 PURPOSE
 -------
