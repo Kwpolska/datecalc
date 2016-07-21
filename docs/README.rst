@@ -9,11 +9,13 @@ Date Calculator
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/datecalc.svg?branch=master
+   :target: https://travis-ci.org/Kwpolska/datecalc
 
 PURPOSE
 -------
 
-A simple date calculator.
+A simple date calculator that can calculate the difference between two dates or
+add/subtract a given number of days, hours, minutes, seconds to a date.
 
 INSTALLATION
 ------------
@@ -24,6 +26,8 @@ INSTALLATION
 
 CLI USAGE
 ---------
+
+**Run:** ``datecalc``, ``datecalc-cli`` or ``python -m datecalc.cli``.
 
 Calculating difference between dates:
 
@@ -56,7 +60,8 @@ Adding/subtracting:
 GUI USAGE
 ---------
 
-coming soon!
+**Run:** ``datecalc-gui`` or ``python -m datecalc.gui``.
+Date Calculator GUI requires PyQt5.
 
 COPYRIGHT
 ---------

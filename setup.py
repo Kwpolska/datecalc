@@ -17,7 +17,7 @@ setup(name='datecalc',
       platforms='any',
       zip_safe=False,
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=['Development Status :: 3 - Alpha',
+      classifiers=['Development Status :: 5 - Production/Stable',
                    'Environment :: Console',
                    'License :: OSI Approved :: BSD License',
                    'Topic :: Utilities',
