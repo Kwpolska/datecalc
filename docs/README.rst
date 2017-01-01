@@ -3,7 +3,7 @@ Date Calculator
 ===============
 :Info: This is the README file for Date Calculator.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2016, Chris Warrick.
+:Copyright: © 2016-2017, Chris Warrick.
 :Date: 2016-05-04
 :Version: 0.2.1
 
@@ -65,7 +65,7 @@ Date Calculator GUI requires PyQt5.
 
 COPYRIGHT
 ---------
-Copyright © 2016, Chris Warrick.
+Copyright © 2016-2017, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
