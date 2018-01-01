@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 # Date Calculator v0.2.1
 # A simple date calculator.
-# Copyright © 2016-2017, Chris Warrick.
+# Copyright © 2016-2018, Chris Warrick.
 # See /LICENSE for licensing information.
 
 """
 Date Calculator main entry-point (defaults to CLI).
 
-:Copyright: © 2016-2017, Chris Warrick.
+:Copyright: © 2016-2018, Chris Warrick.
 :License: BSD (see /LICENSE).
 """
 
